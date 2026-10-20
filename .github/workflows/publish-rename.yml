@@ -1,0 +1,19 @@
+name: Publish portfolio rename
+on:
+  push:
+    paths:
+      - .github/workflows/publish-rename.yml
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename portfolio.html to index.html
+        run: |
+          git mv portfolio.html index.html
+          git config user.name "tylercat53"
+          git config user.email "tylercat53@users.noreply.github.com"
+          git commit -m "Publish updated portfolio: new tagline, direct article links, contributor wording"
+          git push
