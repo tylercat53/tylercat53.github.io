@@ -1,0 +1,18 @@
+name: Rename portfolio to index
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename portfolio.html to index.html
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git mv portfolio.html index.html
+          git commit -m "Rename portfolio.html to index.html"
+          git push
